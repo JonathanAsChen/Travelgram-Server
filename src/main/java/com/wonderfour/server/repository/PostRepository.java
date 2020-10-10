@@ -1,4 +1,4 @@
 package com.wonderfour.server.repository;
 
-public class PostRepository {
+public interface PostRepository {
 }

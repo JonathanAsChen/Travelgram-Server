@@ -31,7 +31,10 @@ public class User implements UserDetails, Serializable {
     private String password;
 
     @DBRef
-    private List<String> posts;
+    private Avatar avatar;
+
+    @DBRef
+    private List<Post> posts;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

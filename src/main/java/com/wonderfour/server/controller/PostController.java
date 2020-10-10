@@ -1,7 +1,9 @@
 package com.wonderfour.server.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.wonderfour.server.VO.ResultVO;
 import com.wonderfour.server.entity.Avatar;
+import com.wonderfour.server.entity.Post;
 import com.wonderfour.server.entity.User;
 import com.wonderfour.server.service.UserService;
 import org.bson.types.Binary;
@@ -13,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/posts")

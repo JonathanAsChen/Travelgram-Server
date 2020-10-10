@@ -58,14 +58,14 @@ public class ServerSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                //.csrf().disable()
+                .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
                 .and()
                 .authorizeRequests()
                 //.antMatchers("/api/signin/**").permitAll()
                 //.antMatchers("/api/glee/**").hasAnyAuthority("ADMIN", "USER")
                 //.antMatchers("/api/users/**").hasAuthority("ADMIN")
-                .antMatchers("/api/**").authenticated()
+                //.antMatchers("/api/**").authenticated()
                 .anyRequest().permitAll()
                 .and().formLogin().loginProcessingUrl("/login").defaultSuccessUrl("/login-success")
                 .and().logout().logoutUrl("/logout")
