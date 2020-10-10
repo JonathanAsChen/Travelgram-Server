@@ -3,6 +3,7 @@ package com.wonderfour.server.controller;
 import com.wonderfour.server.entity.User;
 import com.wonderfour.server.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api")
 public class UserController {
 
+    @Qualifier("userServiceImpl")
     @Autowired
     private UserService service;
 

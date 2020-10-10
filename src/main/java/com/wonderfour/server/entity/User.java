@@ -2,6 +2,7 @@ package com.wonderfour.server.entity;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -10,6 +11,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collection;
+
+import java.util.List;
 
 /**
  * @author Yifan Chen
@@ -27,8 +30,8 @@ public class User implements UserDetails, Serializable {
 
     private String password;
 
-    //@DBRef()
-    //private List<String> posts;
+    @DBRef
+    private List<String> posts;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
