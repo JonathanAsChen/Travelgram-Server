@@ -1,7 +1,10 @@
 package com.wonderfour.server.controller;
 
+import com.wonderfour.server.VO.ResultVO;
 import com.wonderfour.server.entity.User;
+import com.wonderfour.server.enums.ResultEnum;
 import com.wonderfour.server.service.UserService;
+import com.wonderfour.server.utils.ResultVOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -24,8 +27,6 @@ public class UserController {
         return service.findByUsername(username);
     }
 
-    @PostMapping("/register")
-    public User register(User user) {
-        return service.create(user);
-    }
+
+
 }

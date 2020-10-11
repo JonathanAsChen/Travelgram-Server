@@ -13,13 +13,9 @@ public class Post {
     @Id
     private String id;
 
-    @DBRef
-    private User user;
+    private String author;
 
-    @DBRef
-    private Avatar avatar;
-
-    private boolean saved;
+    private String avatar;
 
     private String location;
 
@@ -27,14 +23,14 @@ public class Post {
 
     private String description;
 
-    @DBRef
-    private List<Tag> tags;
+    private List<String> tags;
 
     private Long likes;
 
     private Long favorites;
 
-    private Long comments;
+    @DBRef
+    private List<Comment> comments;
 
     private String preview;
 

@@ -28,7 +28,7 @@ public class PostDTO {
 
     private String description;
 
-    @DBRef
+    //@DBRef
     private List<String> tags;
 
     private Long likes;

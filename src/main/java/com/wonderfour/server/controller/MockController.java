@@ -1,5 +1,6 @@
 package com.wonderfour.server.controller;
 
+import com.wonderfour.server.DTO.MockPostDTO;
 import com.wonderfour.server.DTO.PostDTO;
 import com.wonderfour.server.DTO.UserProfileDTO;
 import com.wonderfour.server.VO.ResultVO;
@@ -42,8 +43,8 @@ public class MockController {
 //    }
 
 
-    @GetMapping("/api/getmockdata")
-    public ResultVO<List<PostDTO>> getMockData() {
+    @GetMapping("/api/getmockdata-2")
+    public ResultVO<List<PostDTO>> getMockData2() {
 
         List<PostDTO> list = new ArrayList<>();
         for (int i = 1; i < 3; i++) {
@@ -53,6 +54,32 @@ public class MockController {
         ResultVO<List<PostDTO>> result = ResultVOUtils.success(list);
         return result;
     }
+
+    @GetMapping("/api/getmockdata")
+    public MockPostDTO getMockData() {
+        MockPostDTO mockPost = new MockPostDTO();
+        mockPost.setId("5");
+//        Avatar avatar = new Avatar();
+//        avatar.setUrl("https://randomuser.me/api/portraits/women/44.jpg");
+        mockPost.setUsername("Mary");
+        mockPost.setAvatar("https://randomuser.me/api/portraits/women/44.jpg");
+        mockPost.setSaved(true);
+        mockPost.setLocation("Santorini, Greece");
+        mockPost.setTitle("Santorini");
+        mockPost.setDescription("Santorini is one of the Cyclades islands in the Aegean Sea. It was devastated by a volcanic");
+        mockPost.setLikes(43l);
+        mockPost.setFavorites(50l);
+        mockPost.setComments(3212l);
+        mockPost.setTags("tag1");
+
+        mockPost.setPreview("https://images.unsplash.com/photo-1507501336603-6e31db2be093?auto=format&fit=crop&w=800&q=80");
+        mockPost.setImages("https://images.unsplash.com/photo-1507501336603-6e31db2be093?auto=format&fit=crop&w=800&q=80");
+        mockPost.setArticle("mock content mock content mock content mock content.");
+        return mockPost;
+
+    }
+
+
 
     private PostDTO mock(Integer i) {
 

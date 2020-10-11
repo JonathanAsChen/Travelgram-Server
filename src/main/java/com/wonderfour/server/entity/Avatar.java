@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Date;
 
 @Data
-@Document
+@Document(collection = "avatar")
 public class Avatar {
     @Id
     private String id;
@@ -20,6 +20,6 @@ public class Avatar {
     private long size; // 文件大小
     private String url; // online photo
 
-    @DBRef
-    private User user;
+//    @DBRef
+//    private User user;
 }

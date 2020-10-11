@@ -22,6 +22,13 @@ public class ResultVOUtils {
         return success(null);
     }
 
+    public static ResultVO success(String msg) {
+        ResultVO resultVO = new ResultVO();
+        resultVO.setCode(ResultEnum.SUCCESS.getCode());
+        resultVO.setMessage(msg);
+        return resultVO;
+    }
+
     public static ResultVO error(Integer code, String msg) {
         ResultVO resultVO = new ResultVO();
         resultVO.setCode(code);

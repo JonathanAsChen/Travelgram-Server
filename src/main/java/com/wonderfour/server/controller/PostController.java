@@ -5,11 +5,16 @@ import com.wonderfour.server.VO.ResultVO;
 import com.wonderfour.server.entity.Avatar;
 import com.wonderfour.server.entity.Post;
 import com.wonderfour.server.entity.User;
+import com.wonderfour.server.repository.PostRepository;
+import com.wonderfour.server.service.PostService;
 import com.wonderfour.server.service.UserService;
+import com.wonderfour.server.utils.ResultVOUtils;
 import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,11 +23,21 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/posts")
+@RequestMapping("/api")
 public class PostController {
 
     @Autowired
     private MongoTemplate mongoTemplate;
+
+    @Autowired
+    private PostService postService;
+
+    @Autowired
+    @Qualifier("userDetailsServiceImpl")
+    private UserDetailsService userDetailsService;
+
+    @Autowired
+    private UserService userService;
 
     public JSONObject uploadImage(@RequestParam(value = "image") MultipartFile file) {
         if (file.isEmpty()) {
@@ -56,4 +71,18 @@ public class PostController {
         return jsonResult;
 
     }
+
+    @PostMapping("/{username}/post")
+    @PreAuthorize("authentication.name.equals(#username)")
+    public ResultVO post(@PathVariable("username") String username,
+                         Post post) {
+        User author = userService.findByUsername(username);
+        post.setAuthor(author.getUsername());
+        post.setAvatar(author.getAvatar());
+        List<Post> list = author.getPosts();
+        list.add(postService.save(post));
+        userService.create(author);
+        return ResultVOUtils.success();
+    }
+
 }
