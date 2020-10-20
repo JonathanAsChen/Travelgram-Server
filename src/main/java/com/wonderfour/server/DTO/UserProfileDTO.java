@@ -1,7 +1,9 @@
 package com.wonderfour.server.DTO;
 
 import com.wonderfour.server.entity.Avatar;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author Yifan Chen
@@ -9,6 +11,8 @@ import lombok.Data;
  * @since 10/10/2020 2:34 PM
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserProfileDTO {
 
 
@@ -16,8 +20,4 @@ public class UserProfileDTO {
 
     private String avatar;
 
-    public UserProfileDTO(String username, String avatar) {
-        this.username = username;
-        this.avatar = avatar;
-    }
 }

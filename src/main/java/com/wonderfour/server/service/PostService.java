@@ -1,5 +1,6 @@
 package com.wonderfour.server.service;
 
+import com.wonderfour.server.DTO.PostDTO;
 import com.wonderfour.server.entity.Post;
 import org.springframework.stereotype.Service;
 
@@ -21,4 +22,5 @@ public interface PostService {
 
     Post findById(String id);
 
+    void deleteById(String id);
 }

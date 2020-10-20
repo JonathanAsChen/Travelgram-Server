@@ -9,6 +9,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -29,7 +30,7 @@ public class PostDTO {
     private String description;
 
     //@DBRef
-    private List<String> tags;
+    private List<String> tags = new ArrayList<>();
 
     private Long likes;
 
@@ -39,7 +40,7 @@ public class PostDTO {
 
     private String preview;
 
-    private List<String> images;
+    private List<String> images = new ArrayList<>();
 
     private String article;
 }

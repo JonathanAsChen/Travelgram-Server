@@ -4,6 +4,7 @@ import com.wonderfour.server.entity.Post;
 import com.wonderfour.server.repository.PostRepository;
 import com.wonderfour.server.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
  * @version 1.0.0
  * @since 10/11/2020 10:04 AM
  */
+@Service
 public class PostServiceImpl implements PostService {
 
     @Autowired
@@ -20,6 +22,11 @@ public class PostServiceImpl implements PostService {
     @Override
     public Post save(Post post) {
         return postRepository.save(post);
+    }
+
+    @Override
+    public void deleteById(String id) {
+        postRepository.deleteById(id);
     }
 
     @Override

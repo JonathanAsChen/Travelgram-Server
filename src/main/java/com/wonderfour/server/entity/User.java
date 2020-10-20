@@ -9,6 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -34,13 +35,13 @@ public class User implements UserDetails, Serializable {
     private String avatar;
 
     @DBRef
-    private List<Post> posts;
+    private List<Post> posts = new ArrayList<>();
 
     @DBRef
-    private List<Post> favorites;
+    private List<Post> favorites = new ArrayList<>();;
 
     @DBRef
-    private List<Post> liked;
+    private List<Post> liked = new ArrayList<>();;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
