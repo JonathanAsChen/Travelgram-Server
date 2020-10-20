@@ -85,12 +85,7 @@ public class PostController {
         resultVO.setData(postDTOList);
         List<Post> postList = postService.findByAuthor(username);
         for (Post post : postList) {
-            PostDTO postDTO = new PostDTO();
-            BeanUtils.copyProperties(post, postDTO);
-            UserProfileDTO userProfileDTO = new UserProfileDTO();
-            userProfileDTO.setUsername(username);
-            userProfileDTO.setAvatar(post.getAvatar());
-            postDTO.setUser(userProfileDTO);
+            PostDTO postDTO = Post2PostDTOConverter.convert(post);
 
             //TODO: save logic
 
@@ -98,6 +93,16 @@ public class PostController {
             postDTOList.add(postDTO);
         }
         return resultVO;
+    }
+
+    @GetMapping("/posts/{postId}")
+    public ResultVO getPost(@PathVariable("postId") String postId) {
+        Post post = postService.findById(postId);
+        PostDTO postDTO = Post2PostDTOConverter.convert(post);
+
+        ResultVO<PostDTO> result = ResultVOUtils.success();
+        result.setData(postDTO);
+        return result;
     }
 
 
