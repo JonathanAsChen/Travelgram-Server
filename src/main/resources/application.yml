@@ -2,7 +2,8 @@ server:
   port: 5000
 
 spring:
-  data:
-    mongodb:
-      uri: mongodb+srv://travelgram_admin:EXHghUTDfYdel572@cluster0.ea1v6.mongodb.net/test
-      database: travelgram
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://database-1.cl3cflrcdchg.us-east-1.rds.amazonaws.com:3306/travelgram
+    username: admin
+    password: op3E1FJE79qKeNFn

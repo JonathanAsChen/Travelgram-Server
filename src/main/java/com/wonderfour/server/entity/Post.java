@@ -1,21 +1,11 @@
 package com.wonderfour.server.entity;
 
-import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
+import java.io.Serializable;
 
-import java.util.List;
-
-@Data
-@Document(collection = "post")
-public class Post {
-    @Id
+public class Post implements Serializable {
     private String id;
 
-    private String author;
-
-    private String avatar;
+    private Integer userId;
 
     private String location;
 
@@ -23,18 +13,72 @@ public class Post {
 
     private String description;
 
-    private List<String> tags;
+    private String article;
 
-    private Long likes;
+    private static final long serialVersionUID = 1L;
 
-    private Long favorites;
+    public String getId() {
+        return id;
+    }
 
-    @DBRef
-    private List<Comment> comments;
+    public void setId(String id) {
+        this.id = id == null ? null : id.trim();
+    }
 
-    private String preview;
+    public Integer getUserId() {
+        return userId;
+    }
 
-    private List<String> images;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
-    private Article article;
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location == null ? null : location.trim();
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
+    }
+
+    public String getArticle() {
+        return article;
+    }
+
+    public void setArticle(String article) {
+        this.article = article == null ? null : article.trim();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", userId=").append(userId);
+        sb.append(", location=").append(location);
+        sb.append(", title=").append(title);
+        sb.append(", description=").append(description);
+        sb.append(", article=").append(article);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
+    }
 }

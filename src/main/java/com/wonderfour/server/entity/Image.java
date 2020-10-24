@@ -2,14 +2,12 @@ package com.wonderfour.server.entity;
 
 import java.io.Serializable;
 
-public class Comment implements Serializable {
+public class Image implements Serializable {
     private String id;
-
-    private Integer userId;
 
     private String postId;
 
-    private String content;
+    private String url;
 
     private static final long serialVersionUID = 1L;
 
@@ -21,14 +19,6 @@ public class Comment implements Serializable {
         this.id = id == null ? null : id.trim();
     }
 
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
     public String getPostId() {
         return postId;
     }
@@ -37,12 +27,12 @@ public class Comment implements Serializable {
         this.postId = postId == null ? null : postId.trim();
     }
 
-    public String getContent() {
-        return content;
+    public String getUrl() {
+        return url;
     }
 
-    public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
+    public void setUrl(String url) {
+        this.url = url == null ? null : url.trim();
     }
 
     @Override
@@ -52,9 +42,8 @@ public class Comment implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", userId=").append(userId);
         sb.append(", postId=").append(postId);
-        sb.append(", content=").append(content);
+        sb.append(", url=").append(url);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

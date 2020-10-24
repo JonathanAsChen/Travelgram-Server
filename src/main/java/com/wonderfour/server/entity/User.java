@@ -1,76 +1,62 @@
 package com.wonderfour.server.entity;
 
-import lombok.Data;
-import lombok.ToString;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 
-import java.util.List;
-
-/**
- * @author Yifan Chen
- * @version 1.0.0
- * @since 10/7/2020 5:00 PM
- */
-@Data
-@Document(collection = "user")
-@ToString
-public class User implements UserDetails, Serializable {
-
-    @Id
-    private String id;
+public class User implements Serializable {
+    private Integer id;
 
     private String username;
 
     private String password;
 
-//    @DBRef
     private String avatar;
 
-    @DBRef
-    private List<Post> posts = new ArrayList<>();
+    private static final long serialVersionUID = 1L;
 
-    @DBRef
-    private List<Post> favorites = new ArrayList<>();
+    public Integer getId() {
+        return id;
+    }
 
-    @DBRef
-    private List<Post> liked = new ArrayList<>();;
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        GrantedAuthority authority = new SimpleGrantedAuthority("USER");
-        return Arrays.asList(authority);
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username == null ? null : username.trim();
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar == null ? null : avatar.trim();
     }
 
     @Override
-    public boolean isAccountNonExpired() {
-        return true;
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", username=").append(username);
+        sb.append(", password=").append(password);
+        sb.append(", avatar=").append(avatar);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
     }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
-
-
-
 }
