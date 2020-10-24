@@ -30,4 +30,14 @@ public class UserServiceImpl implements UserService {
     public UserInfo save(UserInfo user) {
         return null;
     }
+
+    @Override
+    public void insert(UserInfo User) {
+        userInfoMapper.insert(User);
+    }
+
+    @Override
+    public void update(UserInfo User) {
+        userInfoMapper.updateByPrimaryKey(User);
+    }
 }
