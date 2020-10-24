@@ -1,9 +1,6 @@
 package com.wonderfour.server.DTO;
 
-import com.wonderfour.server.entity.Article;
-import com.wonderfour.server.entity.Avatar;
-import com.wonderfour.server.entity.Tag;
-import com.wonderfour.server.entity.User;
+
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;

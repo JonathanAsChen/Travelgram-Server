@@ -1,6 +1,5 @@
 package com.wonderfour.server.DTO;
 
-import com.wonderfour.server.entity.Avatar;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -4,9 +4,7 @@ import com.wonderfour.server.DTO.MockPostDTO;
 import com.wonderfour.server.DTO.PostDTO;
 import com.wonderfour.server.DTO.UserProfileDTO;
 import com.wonderfour.server.VO.ResultVO;
-import com.wonderfour.server.entity.Article;
-import com.wonderfour.server.entity.Avatar;
-import com.wonderfour.server.entity.Post;
+
 import com.wonderfour.server.utils.ResultVOUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
