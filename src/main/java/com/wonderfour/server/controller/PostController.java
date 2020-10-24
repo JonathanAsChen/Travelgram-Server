@@ -87,8 +87,8 @@ public class PostController {
         for (Post post : postList) {
             PostDTO postDTO = Post2PostDTOConverter.convert(post);
 
-            //TODO: save logic
-
+            //favorite logic
+            postDTO.setSaved(postService.isSavedByUser(username, post.getId()));
 
             postDTOList.add(postDTO);
         }
@@ -138,6 +138,8 @@ public class PostController {
         }
 
         postService.deleteById(postId);
+        User author = userService.findByUsername(username);
+        userService.create(author);
 
         return ResultVOUtils.success("Post deleted. Post Id : " + postId +
                 ", author: " + username);
@@ -158,5 +160,11 @@ public class PostController {
 
     }
 
+    @GetMapping("/{username}/flush")
+    public ResultVO flush(@PathVariable("username") String username) {
+        User author = userService.findByUsername(username);
+        userService.create(author);
+        return ResultVOUtils.success();
 
+    }
 }

@@ -23,4 +23,7 @@ public interface PostService {
     Post findById(String id);
 
     void deleteById(String id);
+
+    boolean isSavedByUser(String username, String postId);
+
 }

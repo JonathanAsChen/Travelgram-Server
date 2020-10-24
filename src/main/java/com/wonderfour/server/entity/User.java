@@ -1,6 +1,7 @@
 package com.wonderfour.server.entity;
 
 import lombok.Data;
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -22,6 +23,7 @@ import java.util.List;
  */
 @Data
 @Document(collection = "user")
+@ToString
 public class User implements UserDetails, Serializable {
 
     @Id
@@ -38,7 +40,7 @@ public class User implements UserDetails, Serializable {
     private List<Post> posts = new ArrayList<>();
 
     @DBRef
-    private List<Post> favorites = new ArrayList<>();;
+    private List<Post> favorites = new ArrayList<>();
 
     @DBRef
     private List<Post> liked = new ArrayList<>();;
