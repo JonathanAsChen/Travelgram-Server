@@ -71,5 +71,9 @@
             <generatedKey column="id" sqlStatement="Mysql" identity="true" />
         </table>
 
+        <table tableName="post_tag" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
+            <generatedKey column="pt_id" sqlStatement="Mysql" identity="true" />
+        </table>
+
     </context>
 </generatorConfiguration>
