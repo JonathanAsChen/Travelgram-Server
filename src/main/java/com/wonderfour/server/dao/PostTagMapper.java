@@ -2,9 +2,8 @@ package com.wonderfour.server.dao;
 
 import com.wonderfour.server.entity.PostTag;
 import com.wonderfour.server.entity.PostTagExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface PostTagMapper {
     long countByExample(PostTagExample example);

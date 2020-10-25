@@ -2,9 +2,8 @@ package com.wonderfour.server.dao;
 
 import com.wonderfour.server.entity.Image;
 import com.wonderfour.server.entity.ImageExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface ImageMapper {
     long countByExample(ImageExample example);

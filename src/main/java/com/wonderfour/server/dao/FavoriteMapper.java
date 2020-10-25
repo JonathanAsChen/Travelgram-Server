@@ -2,9 +2,8 @@ package com.wonderfour.server.dao;
 
 import com.wonderfour.server.entity.Favorite;
 import com.wonderfour.server.entity.FavoriteExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface FavoriteMapper {
     long countByExample(FavoriteExample example);

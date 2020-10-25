@@ -6,11 +6,14 @@ import com.wonderfour.server.entity.Post;
 import com.wonderfour.server.entity.UserInfo;
 import com.wonderfour.server.enums.ResultEnum;
 import com.wonderfour.server.exception.TravelgramException;
+import com.wonderfour.server.service.ImageService;
 import com.wonderfour.server.service.PostService;
+import com.wonderfour.server.service.TagService;
 import com.wonderfour.server.service.UserService;
 import com.wonderfour.server.utils.KeyUtil;
 import com.wonderfour.server.utils.ResultVOUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -38,6 +41,12 @@ public class PostController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private ImageService imageService;
+
+    @Autowired
+    private TagService tagService;
+
 
     @GetMapping("/{username}/posts")
     public ResultVO listPost(@PathVariable("username") String username) {
@@ -56,6 +65,10 @@ public class PostController {
     @GetMapping("/posts/{postId}")
     public ResultVO getPost(@PathVariable("postId") String postId) {
         Post post = postService.findById(postId);
+        if (post == null) {
+            throw new TravelgramException(ResultEnum.POST_NOT_FOUND);
+        }
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserInfo currUser = userService.findByUsername(authentication.getName());
         PostDTO postDTO = postService.convert2DTO(currUser, post);
@@ -69,14 +82,17 @@ public class PostController {
     @PostMapping("/{username}/posts")
     @PreAuthorize("authentication.name.equals(#username)")
     public ResultVO createPost(@PathVariable("username") String username,
-                         Post post) {
+                         PostDTO postDTO) {
         UserInfo author = userService.findByUsername(username);
+        Post post = new Post();
+        BeanUtils.copyProperties(postDTO, post);
 
         post.setUserId(author.getId());
         String postId = postService.save(post);
 
 
-        //TODO: tags, images, ...
+        imageService.insert(postDTO.getImages(), postId);
+        tagService.savePostTagRelation(postDTO.getTags(), postId);
 
 
 

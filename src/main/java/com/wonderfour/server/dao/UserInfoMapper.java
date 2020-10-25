@@ -2,9 +2,8 @@ package com.wonderfour.server.dao;
 
 import com.wonderfour.server.entity.UserInfo;
 import com.wonderfour.server.entity.UserInfoExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface UserInfoMapper {
     long countByExample(UserInfoExample example);

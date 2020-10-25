@@ -2,9 +2,8 @@ package com.wonderfour.server.dao;
 
 import com.wonderfour.server.entity.Tag;
 import com.wonderfour.server.entity.TagExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface TagMapper {
     long countByExample(TagExample example);

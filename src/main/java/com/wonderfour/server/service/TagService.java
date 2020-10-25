@@ -17,7 +17,9 @@ public interface TagService {
 
     Tag findById(String id);
 
-    int insert(String tagName);
+    String insert(String tagName);
+
+    void savePostTagRelation(List<String> tagNames, String postId);
 
     List<String> findTagNameListByPostId(String postId);
 }

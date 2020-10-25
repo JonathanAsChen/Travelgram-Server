@@ -11,10 +11,12 @@ import com.wonderfour.server.exception.TravelgramException;
 import com.wonderfour.server.service.TagService;
 import com.wonderfour.server.utils.KeyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLDataException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,6 +34,7 @@ public class TagServiceImpl implements TagService {
     @Autowired
     private PostTagMapper postTagMapper;
 
+
     @Override
     public Tag findByTagName(String tagName) {
         TagExample tagExample = new TagExample();
@@ -48,12 +51,13 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
-    public int insert(String tagName) {
+    public String insert(String tagName) {
         Tag tag = new Tag();
-        tag.setId(KeyUtil.genUniqueKey());
+        String tagId = KeyUtil.genUniqueKey();
+        tag.setId(tagId);
         tag.setName(tagName);
         int result = tagMapper.insert(tag);
-        return result;
+        return tagId;
     }
 
     @Override
@@ -61,6 +65,10 @@ public class TagServiceImpl implements TagService {
         PostTagExample postTagExample = new PostTagExample();
         postTagExample.createCriteria().andPostIdEqualTo(postId);
         List<PostTag> postTagList = postTagMapper.selectByExample(postTagExample);
+        if (postTagList.isEmpty()) {
+            return new ArrayList<>();
+        }
+
 
         TagExample tagExample = new TagExample();
         tagExample.createCriteria().andIdIn(postTagList.stream().map(PostTag::getTagId).collect(Collectors.toList()));
@@ -68,5 +76,22 @@ public class TagServiceImpl implements TagService {
         List<String> result = tagMapper.selectByExample(tagExample)
                                 .stream().map(Tag::getName).collect(Collectors.toList());
         return result;
+    }
+
+    @Override
+    public void savePostTagRelation(List<String> tagNames, String postId) {
+        for (String tagName: tagNames) {
+            Tag tag = findByTagName(tagName);
+            String tagId;
+            if (tag == null) {
+                tagId = insert(tagName);
+            } else {
+                tagId = tag.getId();
+            }
+            PostTag postTag = new PostTag();
+            postTag.setPostId(postId);
+            postTag.setTagId(tagId);
+            postTagMapper.insert(postTag);
+        }
     }
 }

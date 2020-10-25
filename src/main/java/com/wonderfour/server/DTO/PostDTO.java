@@ -13,8 +13,6 @@ public class PostDTO {
 
     private UserProfileDTO user;
 
-    //private Avatar avatar;
-
     private boolean saved;
 
     private boolean liked;
@@ -25,7 +23,6 @@ public class PostDTO {
 
     private String description;
 
-    //@DBRef
     private List<String> tags = new ArrayList<>();
 
     private Long likes;

@@ -20,6 +20,9 @@ public enum ResultEnum {
 
     TAG_NOT_FOUND(900, "Tag not found."),
 
+    POST_NOT_FOUND(901, "Post not found."),
+
+
 
     ;
 
