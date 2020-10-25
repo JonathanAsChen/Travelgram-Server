@@ -1,11 +1,15 @@
 package com.wonderfour.server.controller;
 
+import com.wonderfour.server.DTO.UserProfileDTO;
 import com.wonderfour.server.VO.ResultVO;
 import com.wonderfour.server.entity.UserInfo;
 import com.wonderfour.server.service.UserService;
 import com.wonderfour.server.utils.ResultVOUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -21,6 +25,16 @@ public class UserInfoController {
 
     @Autowired
     private UserService service;
+
+    @GetMapping("/currUser")
+    public UserProfileDTO getCurrentUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserInfo currUser = service.findByUsername(authentication.getName());
+        UserProfileDTO userProfileDTO = new UserProfileDTO();
+        BeanUtils.copyProperties(currUser, userProfileDTO);
+        return userProfileDTO;
+    }
+
 
     @GetMapping("/user/{username}")
     public UserInfo getUser(@PathVariable("username") String username) {
