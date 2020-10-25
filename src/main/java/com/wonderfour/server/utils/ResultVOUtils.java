@@ -35,4 +35,11 @@ public class ResultVOUtils {
         resultVO.setMessage(msg);
         return resultVO;
     }
+
+    public static ResultVO result(ResultEnum resultEnum) {
+        ResultVO resultVO = new ResultVO();
+        resultVO.setCode(resultEnum.getCode());
+        resultVO.setMessage(resultEnum.getMsg());
+        return resultVO;
+    }
 }

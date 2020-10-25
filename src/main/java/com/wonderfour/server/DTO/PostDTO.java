@@ -2,9 +2,6 @@ package com.wonderfour.server.DTO;
 
 
 import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +17,8 @@ public class PostDTO {
 
     private boolean saved;
 
+    private boolean liked;
+
     private String location;
 
     private String title;
@@ -34,8 +33,6 @@ public class PostDTO {
     private Long favorites;
 
     private Long comments;
-
-    private String preview;
 
     private List<String> images = new ArrayList<>();
 

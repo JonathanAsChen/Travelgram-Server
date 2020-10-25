@@ -2,8 +2,9 @@ package com.wonderfour.server.dao;
 
 import com.wonderfour.server.entity.Comment;
 import com.wonderfour.server.entity.CommentExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface CommentMapper {
     long countByExample(CommentExample example);

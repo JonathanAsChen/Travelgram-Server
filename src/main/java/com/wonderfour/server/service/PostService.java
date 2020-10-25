@@ -2,6 +2,7 @@ package com.wonderfour.server.service;
 
 import com.wonderfour.server.DTO.PostDTO;
 import com.wonderfour.server.entity.Post;
+import com.wonderfour.server.entity.UserInfo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +15,9 @@ import java.util.List;
 @Service
 public interface PostService {
 
-    Post save(Post post);
+    String save(Post post);
+
+    int update(Post post);
 
     List<Post> findByAuthor(String author);
 
@@ -25,5 +28,16 @@ public interface PostService {
     void deleteById(String id);
 
     boolean isSavedByUser(String username, String postId);
+
+    boolean isLikedByUser(String username, String postId);
+
+    PostDTO convert2DTO(UserInfo user, UserInfo author, Post post);
+
+    PostDTO convert2DTO(UserInfo author, Post post);
+
+    Long countFavorites(String postId);
+
+    Long countLikes(String postId);
+
 
 }

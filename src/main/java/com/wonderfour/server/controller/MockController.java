@@ -4,7 +4,6 @@ import com.wonderfour.server.DTO.MockPostDTO;
 import com.wonderfour.server.DTO.PostDTO;
 import com.wonderfour.server.DTO.UserProfileDTO;
 import com.wonderfour.server.VO.ResultVO;
-
 import com.wonderfour.server.utils.ResultVOUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,7 +32,6 @@ public class MockController {
 //        mockPost.setLikes(43l);
 //        mockPost.setFavorites(50l);
 //        mockPost.setComments(3212l);
-//        mockPost.setPreview("https://images.unsplash.com/photo-1507501336603-6e31db2be093?auto=format&fit=crop&w=800&q=80");
 //        List<String> images = Arrays.asList("https://images.unsplash.com/photo-1507501336603-6e31db2be093?auto=format&fit=crop&w=800&q=80",
 //                "https://images.unsplash.com/photo-1507501336603-6e31db2be093?auto=format&fit=crop&w=800&q=80");
 //        mockPost.setImages(images);
@@ -96,7 +94,6 @@ public class MockController {
         List<String> tags = Arrays.asList("tag1", "tag2");
         mockPost.setTags(tags);
 
-        mockPost.setPreview("https://images.unsplash.com/photo-1507501336603-6e31db2be093?auto=format&fit=crop&w=800&q=80");
         List<String> images = Arrays.asList("https://images.unsplash.com/photo-1507501336603-6e31db2be093?auto=format&fit=crop&w=800&q=80",
                 "https://images.unsplash.com/photo-1507501336603-6e31db2be093?auto=format&fit=crop&w=800&q=80");
         mockPost.setImages(images);

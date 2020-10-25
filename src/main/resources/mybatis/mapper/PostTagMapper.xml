@@ -3,8 +3,8 @@
 <mapper namespace="com.wonderfour.server.dao.PostTagMapper">
   <resultMap id="BaseResultMap" type="com.wonderfour.server.entity.PostTag">
     <id column="pt_id" jdbcType="INTEGER" property="ptId" />
-    <result column="post_id" jdbcType="INTEGER" property="postId" />
-    <result column="tag_id" jdbcType="INTEGER" property="tagId" />
+    <result column="post_id" jdbcType="VARCHAR" property="postId" />
+    <result column="tag_id" jdbcType="VARCHAR" property="tagId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -103,7 +103,7 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into post_tag (post_id, tag_id)
-    values (#{postId,jdbcType=INTEGER}, #{tagId,jdbcType=INTEGER})
+    values (#{postId,jdbcType=VARCHAR}, #{tagId,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.wonderfour.server.entity.PostTag">
     <selectKey keyProperty="ptId" order="AFTER" resultType="java.lang.Integer">
@@ -120,10 +120,10 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="postId != null">
-        #{postId,jdbcType=INTEGER},
+        #{postId,jdbcType=VARCHAR},
       </if>
       <if test="tagId != null">
-        #{tagId,jdbcType=INTEGER},
+        #{tagId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -140,10 +140,10 @@
         pt_id = #{record.ptId,jdbcType=INTEGER},
       </if>
       <if test="record.postId != null">
-        post_id = #{record.postId,jdbcType=INTEGER},
+        post_id = #{record.postId,jdbcType=VARCHAR},
       </if>
       <if test="record.tagId != null">
-        tag_id = #{record.tagId,jdbcType=INTEGER},
+        tag_id = #{record.tagId,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -153,8 +153,8 @@
   <update id="updateByExample" parameterType="map">
     update post_tag
     set pt_id = #{record.ptId,jdbcType=INTEGER},
-      post_id = #{record.postId,jdbcType=INTEGER},
-      tag_id = #{record.tagId,jdbcType=INTEGER}
+      post_id = #{record.postId,jdbcType=VARCHAR},
+      tag_id = #{record.tagId,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -163,18 +163,18 @@
     update post_tag
     <set>
       <if test="postId != null">
-        post_id = #{postId,jdbcType=INTEGER},
+        post_id = #{postId,jdbcType=VARCHAR},
       </if>
       <if test="tagId != null">
-        tag_id = #{tagId,jdbcType=INTEGER},
+        tag_id = #{tagId,jdbcType=VARCHAR},
       </if>
     </set>
     where pt_id = #{ptId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.wonderfour.server.entity.PostTag">
     update post_tag
-    set post_id = #{postId,jdbcType=INTEGER},
-      tag_id = #{tagId,jdbcType=INTEGER}
+    set post_id = #{postId,jdbcType=VARCHAR},
+      tag_id = #{tagId,jdbcType=VARCHAR}
     where pt_id = #{ptId,jdbcType=INTEGER}
   </update>
 </mapper>

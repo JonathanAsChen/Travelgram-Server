@@ -5,9 +5,9 @@ import java.io.Serializable;
 public class PostTag implements Serializable {
     private Integer ptId;
 
-    private Integer postId;
+    private String postId;
 
-    private Integer tagId;
+    private String tagId;
 
     private static final long serialVersionUID = 1L;
 
@@ -19,20 +19,20 @@ public class PostTag implements Serializable {
         this.ptId = ptId;
     }
 
-    public Integer getPostId() {
+    public String getPostId() {
         return postId;
     }
 
-    public void setPostId(Integer postId) {
-        this.postId = postId;
+    public void setPostId(String postId) {
+        this.postId = postId == null ? null : postId.trim();
     }
 
-    public Integer getTagId() {
+    public String getTagId() {
         return tagId;
     }
 
-    public void setTagId(Integer tagId) {
-        this.tagId = tagId;
+    public void setTagId(String tagId) {
+        this.tagId = tagId == null ? null : tagId.trim();
     }
 
     @Override

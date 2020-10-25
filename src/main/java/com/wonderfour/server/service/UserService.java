@@ -13,7 +13,9 @@ public interface UserService {
 
     UserInfo findByUsername(String username);
 
-    UserInfo save(UserInfo user);
+    UserInfo findById(Integer id);
+
+    int save(UserInfo user);
 
     void insert(UserInfo User);
 

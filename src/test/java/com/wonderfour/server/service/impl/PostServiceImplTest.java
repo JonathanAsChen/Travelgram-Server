@@ -9,8 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * @author Yifan Chen
  * @version 1.0.0
@@ -28,5 +26,19 @@ class PostServiceImplTest {
 
         List<Post> posts = postService.findByAuthor("test1");
         log.info(String.valueOf(posts));
+    }
+
+    @Test
+    void findByTag() {
+        List<Post> posts = postService.findByTag("testTag1");
+        log.info(String.valueOf(posts));
+    }
+
+    @Test
+    void isSaved() {
+
+        boolean isSaved = postService.isSavedByUser("test2", "1");
+        boolean isSaved2 = postService.isSavedByUser("test2", "2");
+        return;
     }
 }

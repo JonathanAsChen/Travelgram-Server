@@ -5,8 +5,9 @@ import com.wonderfour.server.entity.UserInfo;
 import com.wonderfour.server.entity.UserInfoExample;
 import com.wonderfour.server.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author Yifan Chen
@@ -20,15 +21,21 @@ public class UserServiceImpl implements UserService {
     private UserInfoMapper userInfoMapper;
 
     @Override
-    public UserInfo findByUsername(String username) {
-        UserInfoExample example = new UserInfoExample();
-        example.createCriteria().andUsernameEqualTo(username);
-        return userInfoMapper.selectByExample(example).get(0);
+    public UserInfo findById(Integer id) {
+        return userInfoMapper.selectByPrimaryKey(id);
     }
 
     @Override
-    public UserInfo save(UserInfo user) {
-        return null;
+    public UserInfo findByUsername(String username) {
+        UserInfoExample example = new UserInfoExample();
+        example.createCriteria().andUsernameEqualTo(username);
+        List<UserInfo> userInfoList = userInfoMapper.selectByExample(example);
+        return userInfoList.isEmpty() ? null : userInfoList.get(0);
+    }
+
+    @Override
+    public int save(UserInfo user) {
+        return userInfoMapper.insert(user);
     }
 
     @Override

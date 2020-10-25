@@ -14,7 +14,11 @@ public enum ResultEnum {
 
     ERROR(200, "failed"),
 
+    FORBIDDEN(403, "Access denied."),
 
+    SERVER_ERROR(500, "Internal server error."),
+
+    TAG_NOT_FOUND(900, "Tag not found."),
 
 
     ;
