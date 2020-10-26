@@ -2,6 +2,8 @@ package com.wonderfour.server.controller;
 
 import com.wonderfour.server.DTO.PostDTO;
 import com.wonderfour.server.VO.ResultVO;
+import com.wonderfour.server.dao.PostMapper;
+import com.wonderfour.server.entity.FavoriteExample;
 import com.wonderfour.server.entity.Post;
 import com.wonderfour.server.entity.UserInfo;
 import com.wonderfour.server.enums.ResultEnum;
@@ -57,6 +59,23 @@ public class PostController {
         List<Post> postList = postService.findByAuthor(username);
         for (Post post : postList) {
             PostDTO postDTO = postService.convert2DTO(author, post);
+            postDTOList.add(postDTO);
+        }
+        return resultVO;
+    }
+
+    @GetMapping("/{username}/favorites")
+    public ResultVO listFavorites(@PathVariable("username") String username) {
+        ResultVO<List<PostDTO>> resultVO = ResultVOUtils.success();
+        List<PostDTO> postDTOList = new ArrayList<>();
+        resultVO.setData(postDTOList);
+
+        List<Post> postList = postService.findFavoriteByUserName(username);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserInfo currUser = userService.findByUsername(authentication.getName());
+
+        for (Post post : postList) {
+            PostDTO postDTO = postService.convert2DTO(currUser, post);
             postDTOList.add(postDTO);
         }
         return resultVO;

@@ -16,6 +16,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -183,5 +184,17 @@ public class PostServiceImpl implements PostService {
         likesExample.createCriteria().andPostIdEqualTo(postId);
         Long result = likesMapper.countByExample(likesExample);
         return result;
+    }
+
+    @Override
+    public List<Post> findFavoriteByUserName(String username) {
+        FavoriteExample example = new FavoriteExample();
+        example.createCriteria().andUserIdEqualTo(userService.findByUsername(username).getId());
+        List<Favorite> list = favoriteMapper.selectByExample(example);
+        List<Post> listPost = new ArrayList<>();
+        for (Favorite favorite : list) {
+            listPost.add(postMapper.selectByPrimaryKey(favorite.getPostId()));
+        }
+        return listPost;
     }
 }
