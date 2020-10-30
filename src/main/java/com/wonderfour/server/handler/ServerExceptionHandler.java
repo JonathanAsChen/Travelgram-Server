@@ -1,9 +1,7 @@
 package com.wonderfour.server.handler;
 
 import com.wonderfour.server.VO.ResultVO;
-import com.wonderfour.server.enums.ResultEnum;
 import com.wonderfour.server.exception.TravelgramException;
-import com.wonderfour.server.utils.ResultVOUtils;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;

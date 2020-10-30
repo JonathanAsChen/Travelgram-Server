@@ -6,7 +6,6 @@ import com.wonderfour.server.dao.PostMapper;
 import com.wonderfour.server.entity.*;
 import com.wonderfour.server.service.RecommendationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.aggregation.ArrayOperators;
 import org.springframework.stereotype.Service;
 
 import java.util.*;

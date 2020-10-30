@@ -2,8 +2,9 @@ package com.wonderfour.server.dao;
 
 import com.wonderfour.server.entity.Post;
 import com.wonderfour.server.entity.PostExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface PostMapper {
     long countByExample(PostExample example);

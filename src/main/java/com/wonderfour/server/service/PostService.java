@@ -29,7 +29,11 @@ public interface PostService {
 
     boolean isSavedByUser(String username, String postId);
 
+    boolean isSavedByUser(UserInfo userInfo, String postId);
+
     boolean isLikedByUser(String username, String postId);
+
+    boolean isLikedByUser(UserInfo userInfo, String postId);
 
     PostDTO convert2DTO(UserInfo user, UserInfo author, Post post);
 
@@ -38,6 +42,7 @@ public interface PostService {
     Long countFavorites(String postId);
 
     Long countLikes(String postId);
+
 
 
 }

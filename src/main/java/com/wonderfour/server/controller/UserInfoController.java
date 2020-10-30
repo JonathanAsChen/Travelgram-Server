@@ -5,6 +5,7 @@ import com.wonderfour.server.VO.ResultVO;
 import com.wonderfour.server.entity.UserInfo;
 import com.wonderfour.server.service.UserService;
 import com.wonderfour.server.utils.ResultVOUtils;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -26,6 +27,7 @@ public class UserInfoController {
     @Autowired
     private UserService service;
 
+    @Operation(description = "Get current logged in user info.")
     @GetMapping("/currUser")
     public UserProfileDTO getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -35,12 +37,13 @@ public class UserInfoController {
         return userProfileDTO;
     }
 
-
+    @Operation(description = "Get user info by input username.")
     @GetMapping("/user/{username}")
     public UserInfo getUser(@PathVariable("username") String username) {
         return service.findByUsername(username);
     }
 
+    @Operation(description = "Create new user.")
     @PostMapping("/user/new")
     public ResultVO insertUser(UserInfo userInfo) {
         try {
@@ -51,6 +54,7 @@ public class UserInfoController {
         }
     }
 
+    @Operation(description = "Update user info.")
     @PutMapping("/user/update")
     public ResultVO updateUser(UserInfo userInfo) {
         try {

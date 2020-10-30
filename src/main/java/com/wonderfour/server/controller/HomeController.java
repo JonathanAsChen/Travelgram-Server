@@ -9,13 +9,14 @@ import com.wonderfour.server.service.PostService;
 import com.wonderfour.server.service.RecommendationService;
 import com.wonderfour.server.service.UserService;
 import com.wonderfour.server.utils.ResultVOUtils;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCrypt;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +53,7 @@ public class HomeController {
         return "Login success!";
     }
 
+    @Operation(description = "Register a user.")
     @PostMapping("/register")
     public ResultVO register(UserInfo userInfo) {
         if (service.findByUsername(userInfo.getUsername()) != null) {
@@ -63,7 +65,8 @@ public class HomeController {
         return ResultVOUtils.success("User successfully registered.");
     }
 
-    @GetMapping("/recommendation")
+    @Operation(description = "Get recommended post list.")
+    @GetMapping("/api/recommendation")
     public ResultVO recommendation() {
         ResultVO<List<PostDTO>> resultVO = ResultVOUtils.success();
         List<PostDTO> postDTOList = new ArrayList<>();

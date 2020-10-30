@@ -2,8 +2,9 @@ package com.wonderfour.server.dao;
 
 import com.wonderfour.server.entity.Likes;
 import com.wonderfour.server.entity.LikesExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface LikesMapper {
     long countByExample(LikesExample example);

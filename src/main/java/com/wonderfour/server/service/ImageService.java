@@ -1,7 +1,5 @@
 package com.wonderfour.server.service;
 
-import com.wonderfour.server.entity.Image;
-
 import java.util.List;
 
 /**

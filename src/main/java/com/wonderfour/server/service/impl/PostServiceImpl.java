@@ -78,6 +78,7 @@ public class PostServiceImpl implements PostService {
         return favoriteMapper.countByExample(favoriteExample) > 0;
     }
 
+    @Override
     public boolean isSavedByUser(UserInfo userInfo, String postId) {
         if (userInfo == null) {
             return false;
@@ -99,6 +100,7 @@ public class PostServiceImpl implements PostService {
         return likesMapper.countByExample(likesExample) > 0;
     }
 
+    @Override
     public boolean isLikedByUser(UserInfo userInfo, String postId) {
         if (userInfo == null) {
             return false;
@@ -184,4 +186,6 @@ public class PostServiceImpl implements PostService {
         Long result = likesMapper.countByExample(likesExample);
         return result;
     }
+
+
 }
