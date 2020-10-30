@@ -43,6 +43,7 @@ public interface PostService {
 
     Long countLikes(String postId);
 
+    List<Post> findFavoriteByUserName(String username);
 
 
 }
