@@ -1,5 +1,6 @@
 package com.wonderfour.server.entity;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 public class Post implements Serializable {

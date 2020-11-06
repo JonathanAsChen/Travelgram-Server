@@ -55,33 +55,33 @@
             <generatedKey column="id" sqlStatement="Mysql" identity="true" />
         </table>
 
-        <table tableName="image" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
-            <generatedKey column="id" sqlStatement="Mysql" identity="true" />
-        </table>
+<!--        <table tableName="image" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">-->
+<!--            <generatedKey column="id" sqlStatement="Mysql" identity="true" />-->
+<!--        </table>-->
 
-        <table tableName="post" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
-            <generatedKey column="id" sqlStatement="Mysql" identity="true" />
-        </table>
+<!--        <table tableName="post" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">-->
+<!--            <generatedKey column="id" sqlStatement="Mysql" identity="true" />-->
+<!--        </table>-->
 
-        <table tableName="tag" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
-            <generatedKey column="id" sqlStatement="Mysql" identity="true" />
-        </table>
+<!--        <table tableName="tag" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">-->
+<!--            <generatedKey column="id" sqlStatement="Mysql" identity="true" />-->
+<!--        </table>-->
 
-        <table tableName="user_info" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
-            <generatedKey column="id" sqlStatement="Mysql" identity="true" />
-        </table>
+<!--        <table tableName="user_info" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">-->
+<!--            <generatedKey column="id" sqlStatement="Mysql" identity="true" />-->
+<!--        </table>-->
 
-        <table tableName="post_tag" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
-            <generatedKey column="pt_id" sqlStatement="Mysql" identity="true" />
-        </table>
+<!--        <table tableName="post_tag" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">-->
+<!--            <generatedKey column="pt_id" sqlStatement="Mysql" identity="true" />-->
+<!--        </table>-->
 
-        <table tableName="favorite" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
-            <generatedKey column="id" sqlStatement="Mysql" identity="true" />
-        </table>
+<!--        <table tableName="favorite" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">-->
+<!--            <generatedKey column="id" sqlStatement="Mysql" identity="true" />-->
+<!--        </table>-->
 
-        <table tableName="likes" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
-            <generatedKey column="id" sqlStatement="Mysql" identity="true" />
-        </table>
+<!--        <table tableName="likes" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">-->
+<!--            <generatedKey column="id" sqlStatement="Mysql" identity="true" />-->
+<!--        </table>-->
 
     </context>
 </generatorConfiguration>

@@ -1,22 +1,27 @@
 package com.wonderfour.server.controller;
 
 import com.wonderfour.server.DTO.PostDTO;
+import com.wonderfour.server.DTO.UserProfileDTO;
 import com.wonderfour.server.VO.ResultVO;
 import com.wonderfour.server.entity.Post;
 import com.wonderfour.server.entity.UserInfo;
 import com.wonderfour.server.enums.ResultEnum;
+import com.wonderfour.server.service.CommentService;
 import com.wonderfour.server.service.PostService;
 import com.wonderfour.server.service.RecommendationService;
 import com.wonderfour.server.service.UserService;
 import com.wonderfour.server.utils.ResultVOUtils;
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCrypt;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,14 +48,21 @@ public class HomeController {
     @Autowired
     private UserService userService;
 
+
     @GetMapping("/")
     public String home() {
         return "Welcome to travelgram server!";
     }
 
     @GetMapping("/login-success")
-    public String loginSuccess() {
-        return "Login success!";
+    public ResultVO loginSuccess() {
+        ResultVO resultVO = ResultVOUtils.success("Log in success.");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserInfo userInfo = userService.findByUsername(authentication.getName());
+        UserProfileDTO userProfileDTO = new UserProfileDTO();
+        BeanUtils.copyProperties(userInfo, userProfileDTO);
+        resultVO.setData(userProfileDTO);
+        return resultVO;
     }
 
     @Operation(description = "Register a user.")
@@ -73,6 +85,9 @@ public class HomeController {
         resultVO.setData(postDTOList);
         List<Post> postList = recommendationService.recommendByLikes();
         for (Post post : postList) {
+            if (post == null) {
+                continue;
+            }
             PostDTO postDTO = postService.convert2DTO(userService.findById(post.getUserId()), post);
             postDTOList.add(postDTO);
         }

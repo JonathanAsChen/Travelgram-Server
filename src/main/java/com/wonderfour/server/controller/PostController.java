@@ -1,12 +1,16 @@
 package com.wonderfour.server.controller;
 
+import com.wonderfour.server.DTO.CommentDTO;
 import com.wonderfour.server.DTO.PostDTO;
+import com.wonderfour.server.DTO.UserProfileDTO;
 import com.wonderfour.server.VO.ResultVO;
+import com.wonderfour.server.entity.Comment;
 import com.wonderfour.server.entity.Post;
 import com.wonderfour.server.entity.UserInfo;
 import com.wonderfour.server.enums.ResultEnum;
 import com.wonderfour.server.exception.TravelgramException;
 import com.wonderfour.server.service.*;
+import com.wonderfour.server.utils.KeyUtil;
 import com.wonderfour.server.utils.ResultVOUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +23,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.transform.Result;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +55,9 @@ public class PostController {
 
     @Autowired
     private FavoriteService favoriteService;
+
+    @Autowired
+    private CommentService commentService;
 
     @Operation(description = "Get post list posted by the specific user.")
     @GetMapping("/{username}/posts")
@@ -90,8 +99,9 @@ public class PostController {
     @PostMapping("/{username}/posts")
     @PreAuthorize("authentication.name.equals(#username)")
     public ResultVO createPost(@PathVariable("username") String username,
-                         PostDTO postDTO) {
+                               PostDTO postDTO) {
         UserInfo author = userService.findByUsername(username);
+
         Post post = new Post();
         BeanUtils.copyProperties(postDTO, post);
 
@@ -101,7 +111,6 @@ public class PostController {
 
         imageService.insert(postDTO.getImages(), postId);
         tagService.savePostTagRelation(postDTO.getTags(), postId);
-
 
 
         ResultVO<PostDTO> result = ResultVOUtils.success();
@@ -213,6 +222,38 @@ public class PostController {
         favoriteService.defavoritePost(currUser.getId(), postId);
 
         return ResultVOUtils.success();
+    }
+
+    @PostMapping("/posts/{postId}/comments")
+    @PreAuthorize("authentication.authenticated")
+    public ResultVO postComment(@PathVariable("postId") String postId, CommentDTO commentDTO) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserInfo currUser = userService.findByUsername(authentication.getName());
+        Comment comment = new Comment();
+        BeanUtils.copyProperties(commentDTO, comment);
+        comment.setPostId(postId);
+        comment.setUserId(currUser.getId());
+        String commentId = commentService.commentPost(comment);
+        return ResultVOUtils.success("post comment success.");
+    }
+
+
+    @GetMapping("/posts/{postId}/comments")
+    public ResultVO listComments(@PathVariable("postId") String postId) {
+        ResultVO<List<CommentDTO>> resultVO = ResultVOUtils.success();
+        List<CommentDTO> list = new ArrayList<>();
+        resultVO.setData(list);
+        List<Comment> comments = commentService.getByPostId(postId);
+        for (Comment comment : comments) {
+            CommentDTO commentDTO = new CommentDTO();
+            BeanUtils.copyProperties(comment, commentDTO);
+            UserInfo userInfo = userService.findById(comment.getUserId());
+            UserProfileDTO userProfileDTO = new UserProfileDTO();
+            BeanUtils.copyProperties(userInfo, userProfileDTO);
+            commentDTO.setUser(userProfileDTO);
+            list.add(commentDTO);
+        }
+        return resultVO;
     }
 
 }

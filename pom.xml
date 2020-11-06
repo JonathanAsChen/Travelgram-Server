@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.wonderfour</groupId>
     <artifactId>server</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.3-SNAPSHOT</version>
     <name>server</name>
     <description>Web server for the project</description>
 

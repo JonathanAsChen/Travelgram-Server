@@ -1,6 +1,7 @@
 package com.wonderfour.server.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Comment implements Serializable {
     private String id;
@@ -10,6 +11,8 @@ public class Comment implements Serializable {
     private String postId;
 
     private String content;
+
+    private Date createTime;
 
     private static final long serialVersionUID = 1L;
 
@@ -45,6 +48,14 @@ public class Comment implements Serializable {
         this.content = content == null ? null : content.trim();
     }
 
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -55,6 +66,7 @@ public class Comment implements Serializable {
         sb.append(", userId=").append(userId);
         sb.append(", postId=").append(postId);
         sb.append(", content=").append(content);
+        sb.append(", createTime=").append(createTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

@@ -1,5 +1,6 @@
 package com.wonderfour.server.controller;
 
+import com.wonderfour.server.DTO.CommentDTO;
 import com.wonderfour.server.DTO.MockPostDTO;
 import com.wonderfour.server.DTO.PostDTO;
 import com.wonderfour.server.DTO.UserProfileDTO;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -99,5 +101,29 @@ public class MockController {
         mockPost.setImages(images);
         mockPost.setArticle("mock content mock content mock content mock content.");
         return mockPost;
+    }
+
+    private CommentDTO mockComment(Integer i) {
+        CommentDTO commentDTO = new CommentDTO();
+        commentDTO.setUser(new UserProfileDTO("username", "https://randomuser.me/api/portraits/women/44.jpg"));
+        commentDTO.setContent("Santorini is one of the Cyclades islands in the Aegean Sea. It was devastated by a volcanic");
+        commentDTO.setId(i.toString());
+        Date date = new Date();
+        date.setTime(System.currentTimeMillis());
+        commentDTO.setCreateTime(date);
+        commentDTO.setPostId("1047451209");
+        return commentDTO;
+    }
+
+    @GetMapping("/api/getMockComments")
+    public ResultVO<List<CommentDTO>> getMockComments() {
+        ResultVO resultVO = ResultVOUtils.success();
+        List<CommentDTO> commentDTOS = new ArrayList<>();
+        resultVO.setData(commentDTOS);
+        for (int i = 0; i < 10; i++) {
+            CommentDTO commentDTO = mockComment(i);
+            commentDTOS.add(commentDTO);
+        }
+        return resultVO;
     }
 }

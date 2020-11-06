@@ -49,6 +49,11 @@ public class PostServiceImpl implements PostService {
     private ImageService imageService;
 
     @Override
+    public List<Post> findFavoriteByUserName(String username) {
+        return null;
+    }
+
+    @Override
     public String save(Post post) {
         String postId = KeyUtil.genUniqueKey();
         post.setId(postId);
