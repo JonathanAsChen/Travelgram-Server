@@ -46,10 +46,10 @@
             <property name="enableSubPackages" value="false" />
         </sqlMapGenerator>
 
-        <!-- 生成map xml对应client，也就是接口dao -->
-        <javaClientGenerator targetPackage="com.wonderfour.server.dao" targetProject="src/main/java" type="XMLMAPPER" >
-            <property name="enableSubPackages" value="false" />
-        </javaClientGenerator>
+<!--        &lt;!&ndash; 生成map xml对应client，也就是接口dao &ndash;&gt;-->
+<!--        <javaClientGenerator targetPackage="com.wonderfour.server.dao" targetProject="src/main/java" type="XMLMAPPER" >-->
+<!--            <property name="enableSubPackages" value="false" />-->
+<!--        </javaClientGenerator>-->
 
         <table tableName="comment" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
             <generatedKey column="id" sqlStatement="Mysql" identity="true" />
