@@ -70,6 +70,9 @@ public class HomeController {
         resultVO.setData(postDTOList);
         List<Post> postList = recommendationService.recommendByLikes();
         for (Post post : postList) {
+            if (post == null) {
+                continue;
+            }
             PostDTO postDTO = postService.convert2DTO(userService.findById(post.getUserId()), post);
             postDTOList.add(postDTO);
         }

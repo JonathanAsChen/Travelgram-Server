@@ -54,6 +54,7 @@ public class UserInfoController {
     @PutMapping("/user/update")
     public ResultVO updateUser(UserInfo userInfo) {
         try {
+            // ????牛逼啊写起来啊，凑弟弟
             service.update(userInfo);
             return ResultVOUtils.success("update success.");
         } catch (Exception exception) {
