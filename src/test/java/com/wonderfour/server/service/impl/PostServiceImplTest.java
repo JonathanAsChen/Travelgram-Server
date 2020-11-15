@@ -30,7 +30,7 @@ class PostServiceImplTest {
 
     @Test
     void findByTag() {
-        List<Post> posts = postService.findByTag("testTag1");
+        List<Post> posts = postService.findByTag("Peregit Ampyca");
         log.info(String.valueOf(posts));
     }
 

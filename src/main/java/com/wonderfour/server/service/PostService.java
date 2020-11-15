@@ -45,5 +45,7 @@ public interface PostService {
 
     List<Post> findFavoriteByUserName(String username);
 
+    List<Post> searchByContent(String author);
 
+    List<Post> searchByTagAndArticle(String tag, String content);
 }

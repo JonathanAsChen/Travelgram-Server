@@ -192,5 +192,22 @@ public class PostServiceImpl implements PostService {
         return result;
     }
 
+    @Override
+    public List<Post> searchByContent(String content) {
+        PostExample postExample = new PostExample();
+        postExample.createCriteria().andArticleLike("%" + content + "%");
+        List<Post> posts = postMapper.selectByExample(postExample);
+        return posts;
+    }
 
+    @Override
+    public List<Post> searchByTagAndArticle(String tag, String content) {
+        Tag tagObject = tagService.findByTagName(tag);
+        PostTagExample postTagExample = new PostTagExample();
+        postTagExample.createCriteria().andTagIdEqualTo(tagObject.getId());
+        List<PostTag> postTagList = postTagMapper.selectByExample(postTagExample);
+        PostExample postExample = new PostExample();
+        postExample.createCriteria().andIdIn(postTagList.stream().map(PostTag::getPostId).collect(Collectors.toList())).andArticleLike("%" + content + "%");
+        return postMapper.selectByExample(postExample);
+    }
 }

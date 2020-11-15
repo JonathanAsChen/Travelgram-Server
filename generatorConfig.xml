@@ -47,13 +47,13 @@
         </sqlMapGenerator>
 
 <!--        &lt;!&ndash; 生成map xml对应client，也就是接口dao &ndash;&gt;-->
-<!--        <javaClientGenerator targetPackage="com.wonderfour.server.dao" targetProject="src/main/java" type="XMLMAPPER" >-->
-<!--            <property name="enableSubPackages" value="false" />-->
-<!--        </javaClientGenerator>-->
+        <javaClientGenerator targetPackage="com.wonderfour.server.dao" targetProject="src/main/java" type="XMLMAPPER" >
+            <property name="enableSubPackages" value="false" />
+        </javaClientGenerator>
 
-        <table tableName="comment" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
-            <generatedKey column="id" sqlStatement="Mysql" identity="true" />
-        </table>
+<!--        <table tableName="comment" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">-->
+<!--            <generatedKey column="id" sqlStatement="Mysql" identity="true" />-->
+<!--        </table>-->
 
 <!--        <table tableName="image" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">-->
 <!--            <generatedKey column="id" sqlStatement="Mysql" identity="true" />-->
@@ -82,6 +82,10 @@
 <!--        <table tableName="likes" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">-->
 <!--            <generatedKey column="id" sqlStatement="Mysql" identity="true" />-->
 <!--        </table>-->
+
+        <table tableName="follow" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true" />
+        </table>
 
     </context>
 </generatorConfiguration>

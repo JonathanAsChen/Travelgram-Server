@@ -2,6 +2,7 @@ package com.wonderfour.server.controller;
 
 import com.wonderfour.server.DTO.CommentDTO;
 import com.wonderfour.server.DTO.PostDTO;
+import com.wonderfour.server.DTO.SearchDTO;
 import com.wonderfour.server.DTO.UserProfileDTO;
 import com.wonderfour.server.VO.ResultVO;
 import com.wonderfour.server.entity.Comment;
@@ -256,4 +257,54 @@ public class PostController {
         return resultVO;
     }
 
+    @Operation(description = "Search post by content.")
+    @GetMapping("/posts/search/searchByContent/{keyword}")
+    @PreAuthorize("authentication.authenticated")
+    public ResultVO searchByContent(@PathVariable("keyword") String keyword) {
+        String currUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserInfo currUser = userService.findByUsername(currUsername);
+        ResultVO<List<PostDTO>> resultVO = ResultVOUtils.success();
+        List<PostDTO> postDTOList = new ArrayList<>();
+        resultVO.setData(postDTOList);
+        List<Post> postList = postService.searchByContent(keyword);
+        for (Post post : postList) {
+            PostDTO postDTO = postService.convert2DTO(currUser, post);
+            postDTOList.add(postDTO);
+        }
+        return resultVO;
+    }
+
+    @Operation(description = "Search post by tag.")
+    @GetMapping("/posts/search/searchByTag/{tag}")
+    @PreAuthorize("authentication.authenticated")
+    public ResultVO searchByTag(@PathVariable("tag") String tag) {
+        String currUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserInfo currUser = userService.findByUsername(currUsername);
+        ResultVO<List<PostDTO>> resultVO = ResultVOUtils.success();
+        List<PostDTO> postDTOList = new ArrayList<>();
+        resultVO.setData(postDTOList);
+        List<Post> postList = postService.findByTag(tag);
+        for (Post post : postList) {
+            PostDTO postDTO = postService.convert2DTO(currUser, post);
+            postDTOList.add(postDTO);
+        }
+        return resultVO;
+    }
+
+    @Operation(description = "Search post by content and tag.")
+    @PostMapping("/posts/search/searchByTagAndArticle")
+    @PreAuthorize("authentication.authenticated")
+    public ResultVO searchByContent(SearchDTO searchDTO) {
+        String currUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserInfo currUser = userService.findByUsername(currUsername);
+        ResultVO<List<PostDTO>> resultVO = ResultVOUtils.success();
+        List<PostDTO> postDTOList = new ArrayList<>();
+        resultVO.setData(postDTOList);
+        List<Post> postList = postService.searchByTagAndArticle(searchDTO.getTag(), searchDTO.getContent());
+        for (Post post : postList) {
+            PostDTO postDTO = postService.convert2DTO(currUser, post);
+            postDTOList.add(postDTO);
+        }
+        return resultVO;
+    }
 }
