@@ -22,7 +22,7 @@ public enum ResultEnum {
 
     POST_NOT_FOUND(901, "Post not found."),
 
-
+    NOT_ENOUGH_COIN(902, "Insufficient Balance."),
 
     ;
 

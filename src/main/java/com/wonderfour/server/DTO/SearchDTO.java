@@ -2,8 +2,6 @@ package com.wonderfour.server.DTO;
 
 import lombok.Data;
 
-import java.util.Date;
-
 /**
  * @author Hongyu Su
  * @version 1.0.0

@@ -6,7 +6,6 @@ import com.wonderfour.server.VO.ResultVO;
 import com.wonderfour.server.entity.Post;
 import com.wonderfour.server.entity.UserInfo;
 import com.wonderfour.server.enums.ResultEnum;
-import com.wonderfour.server.service.CommentService;
 import com.wonderfour.server.service.PostService;
 import com.wonderfour.server.service.RecommendationService;
 import com.wonderfour.server.service.UserService;

@@ -3,7 +3,6 @@ package com.wonderfour.server.controller;
 import com.wonderfour.server.DTO.CommentDTO;
 import com.wonderfour.server.DTO.MockPostDTO;
 import com.wonderfour.server.DTO.PostDTO;
-import com.wonderfour.server.DTO.UserProfileDTO;
 import com.wonderfour.server.VO.ResultVO;
 import com.wonderfour.server.utils.ResultVOUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -85,7 +84,7 @@ public class MockController {
         mockPost.setId(i.toString());
 //        Avatar avatar = new Avatar();
 //        avatar.setUrl("https://randomuser.me/api/portraits/women/44.jpg");
-        mockPost.setUser(new UserProfileDTO("username", "https://randomuser.me/api/portraits/women/44.jpg"));
+//        mockPost.setUser(new UserProfileDTO("username", "https://randomuser.me/api/portraits/women/44.jpg"));
         mockPost.setSaved(true);
         mockPost.setLocation("Santorini, Greece");
         mockPost.setTitle("Santorini");
@@ -105,7 +104,7 @@ public class MockController {
 
     private CommentDTO mockComment(Integer i) {
         CommentDTO commentDTO = new CommentDTO();
-        commentDTO.setUser(new UserProfileDTO("username", "https://randomuser.me/api/portraits/women/44.jpg"));
+//        commentDTO.setUser(new UserProfileDTO("username", "https://randomuser.me/api/portraits/women/44.jpg"));
         commentDTO.setContent("Santorini is one of the Cyclades islands in the Aegean Sea. It was devastated by a volcanic");
         commentDTO.setId(i.toString());
         Date date = new Date();

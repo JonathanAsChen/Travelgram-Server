@@ -11,7 +11,6 @@ import com.wonderfour.server.entity.UserInfo;
 import com.wonderfour.server.enums.ResultEnum;
 import com.wonderfour.server.exception.TravelgramException;
 import com.wonderfour.server.service.*;
-import com.wonderfour.server.utils.KeyUtil;
 import com.wonderfour.server.utils.ResultVOUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
@@ -24,8 +23,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.transform.Result;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 

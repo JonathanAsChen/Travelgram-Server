@@ -11,6 +11,13 @@ public class UserInfo implements Serializable {
 
     private String avatar;
 
+    private String email;
+
+    private Integer coin;
+
+    /*gender: 0 = female 1 = male*/
+    private Integer gender;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -45,6 +52,30 @@ public class UserInfo implements Serializable {
         this.avatar = avatar == null ? null : avatar.trim();
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
+    }
+
+    public Integer getCoin() {
+        return coin;
+    }
+
+    public void setCoin(Integer coin) {
+        this.coin = coin;
+    }
+
+    public Integer getGender() {
+        return gender;
+    }
+
+    public void setGender(Integer gender) {
+        this.gender = gender;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -55,6 +86,9 @@ public class UserInfo implements Serializable {
         sb.append(", username=").append(username);
         sb.append(", password=").append(password);
         sb.append(", avatar=").append(avatar);
+        sb.append(", email=").append(email);
+        sb.append(", coin=").append(coin);
+        sb.append(", gender=").append(gender);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

@@ -19,4 +19,9 @@ public class UserProfileDTO {
 
     private String avatar;
 
+    private String email;
+
+    private Integer coin;
+
+    private Integer gender;
 }

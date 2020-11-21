@@ -20,4 +20,6 @@ public interface UserService {
     void insert(UserInfo User);
 
     void update(UserInfo User);
+
+    void reward(UserInfo user, UserInfo uploader, Integer value);
 }

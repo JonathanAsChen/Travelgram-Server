@@ -373,6 +373,196 @@ public class UserInfoExample {
             addCriterion("avatar not between", value1, value2, "avatar");
             return (Criteria) this;
         }
+
+        public Criteria andEmailIsNull() {
+            addCriterion("email is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmailIsNotNull() {
+            addCriterion("email is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmailEqualTo(String value) {
+            addCriterion("email =", value, "email");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmailNotEqualTo(String value) {
+            addCriterion("email <>", value, "email");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmailGreaterThan(String value) {
+            addCriterion("email >", value, "email");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmailGreaterThanOrEqualTo(String value) {
+            addCriterion("email >=", value, "email");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmailLessThan(String value) {
+            addCriterion("email <", value, "email");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmailLessThanOrEqualTo(String value) {
+            addCriterion("email <=", value, "email");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmailLike(String value) {
+            addCriterion("email like", value, "email");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmailNotLike(String value) {
+            addCriterion("email not like", value, "email");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmailIn(List<String> values) {
+            addCriterion("email in", values, "email");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmailNotIn(List<String> values) {
+            addCriterion("email not in", values, "email");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmailBetween(String value1, String value2) {
+            addCriterion("email between", value1, value2, "email");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmailNotBetween(String value1, String value2) {
+            addCriterion("email not between", value1, value2, "email");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoinIsNull() {
+            addCriterion("coin is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoinIsNotNull() {
+            addCriterion("coin is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoinEqualTo(Integer value) {
+            addCriterion("coin =", value, "coin");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoinNotEqualTo(Integer value) {
+            addCriterion("coin <>", value, "coin");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoinGreaterThan(Integer value) {
+            addCriterion("coin >", value, "coin");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoinGreaterThanOrEqualTo(Integer value) {
+            addCriterion("coin >=", value, "coin");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoinLessThan(Integer value) {
+            addCriterion("coin <", value, "coin");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoinLessThanOrEqualTo(Integer value) {
+            addCriterion("coin <=", value, "coin");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoinIn(List<Integer> values) {
+            addCriterion("coin in", values, "coin");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoinNotIn(List<Integer> values) {
+            addCriterion("coin not in", values, "coin");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoinBetween(Integer value1, Integer value2) {
+            addCriterion("coin between", value1, value2, "coin");
+            return (Criteria) this;
+        }
+
+        public Criteria andCoinNotBetween(Integer value1, Integer value2) {
+            addCriterion("coin not between", value1, value2, "coin");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenderIsNull() {
+            addCriterion("gender is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenderIsNotNull() {
+            addCriterion("gender is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenderEqualTo(Integer value) {
+            addCriterion("gender =", value, "gender");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenderNotEqualTo(Integer value) {
+            addCriterion("gender <>", value, "gender");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenderGreaterThan(Integer value) {
+            addCriterion("gender >", value, "gender");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenderGreaterThanOrEqualTo(Integer value) {
+            addCriterion("gender >=", value, "gender");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenderLessThan(Integer value) {
+            addCriterion("gender <", value, "gender");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenderLessThanOrEqualTo(Integer value) {
+            addCriterion("gender <=", value, "gender");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenderIn(List<Integer> values) {
+            addCriterion("gender in", values, "gender");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenderNotIn(List<Integer> values) {
+            addCriterion("gender not in", values, "gender");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenderBetween(Integer value1, Integer value2) {
+            addCriterion("gender between", value1, value2, "gender");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenderNotBetween(Integer value1, Integer value2) {
+            addCriterion("gender not between", value1, value2, "gender");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

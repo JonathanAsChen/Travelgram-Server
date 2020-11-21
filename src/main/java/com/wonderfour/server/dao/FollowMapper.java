@@ -2,8 +2,9 @@ package com.wonderfour.server.dao;
 
 import com.wonderfour.server.entity.Follow;
 import com.wonderfour.server.entity.FollowExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface FollowMapper {
     long countByExample(FollowExample example);

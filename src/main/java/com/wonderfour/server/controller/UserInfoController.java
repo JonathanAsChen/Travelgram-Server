@@ -1,10 +1,9 @@
 package com.wonderfour.server.controller;
 
-import java.util.List;
 import com.wonderfour.server.DTO.FollowCountDTO;
+import com.wonderfour.server.DTO.RewardDTO;
 import com.wonderfour.server.DTO.UserProfileDTO;
 import com.wonderfour.server.VO.ResultVO;
-import com.wonderfour.server.entity.Follow;
 import com.wonderfour.server.entity.UserInfo;
 import com.wonderfour.server.service.FollowService;
 import com.wonderfour.server.service.UserService;
@@ -18,7 +17,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.transform.Result;
+import java.util.List;
 
 /**
  * @author Yifan Chen
@@ -133,5 +132,17 @@ public class UserInfoController {
 
         followService.unFollow(currUser.getId(), following.getId());
         return ResultVOUtils.success();
+    }
+
+    @PostMapping("/user/reward")
+    @PreAuthorize("authentication.authenticated")
+    public ResultVO reward(RewardDTO rewardDTO) {
+        UserInfo currUser = userService.findByUsername(
+                SecurityContextHolder.getContext().getAuthentication().getName());
+
+        UserInfo uploader = userService.findByUsername(rewardDTO.getUploader());
+        userService.reward(currUser, uploader, rewardDTO.getValue());
+
+        return ResultVOUtils.success("Successfully reward " + rewardDTO.getUploader());
     }
 }

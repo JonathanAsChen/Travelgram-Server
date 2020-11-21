@@ -3,9 +3,12 @@ package com.wonderfour.server.service.impl;
 import com.wonderfour.server.dao.UserInfoMapper;
 import com.wonderfour.server.entity.UserInfo;
 import com.wonderfour.server.entity.UserInfoExample;
+import com.wonderfour.server.enums.ResultEnum;
+import com.wonderfour.server.exception.TravelgramException;
 import com.wonderfour.server.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -46,5 +49,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public void update(UserInfo User) {
         userInfoMapper.updateByPrimaryKey(User);
+    }
+
+    @Override
+    @Transactional
+    public void reward(UserInfo user, UserInfo uploader, Integer value) {
+        if (user.getCoin() < value) {
+            throw new TravelgramException(ResultEnum.NOT_ENOUGH_COIN);
+        }
+
+        user.setCoin(user.getCoin() - value);
+        uploader.setCoin(uploader.getCoin() + value);
+        userInfoMapper.updateByPrimaryKey(user);
+        userInfoMapper.updateByPrimaryKey(uploader);
     }
 }

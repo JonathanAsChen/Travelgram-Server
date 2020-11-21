@@ -1,7 +1,6 @@
 package com.wonderfour.server.service;
 
 import com.wonderfour.server.DTO.UserProfileDTO;
-import com.wonderfour.server.entity.Follow;
 
 import java.util.List;
 
