@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.Date;
 
 /**
- * @author Yifan Chen
+ * @author Yifan Chen Hongyu Su
  * @version 1.0.0
  * @since 10/31/2020 3:08 PM
  */
