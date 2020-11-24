@@ -2,20 +2,20 @@ package com.wonderfour.server.service.impl;
 
 import com.wonderfour.server.DTO.PostDTO;
 import com.wonderfour.server.DTO.UserProfileDTO;
+import com.wonderfour.server.VO.ResultVO;
 import com.wonderfour.server.dao.FavoriteMapper;
 import com.wonderfour.server.dao.LikesMapper;
 import com.wonderfour.server.dao.PostMapper;
 import com.wonderfour.server.dao.PostTagMapper;
 import com.wonderfour.server.entity.*;
-import com.wonderfour.server.service.ImageService;
-import com.wonderfour.server.service.PostService;
-import com.wonderfour.server.service.TagService;
-import com.wonderfour.server.service.UserService;
+import com.wonderfour.server.service.*;
 import com.wonderfour.server.utils.KeyUtil;
+import com.wonderfour.server.utils.ResultVOUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,6 +47,9 @@ public class PostServiceImpl implements PostService {
 
     @Autowired
     private ImageService imageService;
+
+    @Autowired
+    private FollowService followService;
 
     @Override
     public List<Post> findFavoriteByUserName(String username) {
@@ -163,7 +166,6 @@ public class PostServiceImpl implements PostService {
 
         postDTO.setTags(tagService.findTagNameListByPostId(post.getId()));
 
-        // TODO: comments
 
 
         return postDTO;
@@ -209,5 +211,17 @@ public class PostServiceImpl implements PostService {
         PostExample postExample = new PostExample();
         postExample.createCriteria().andIdIn(postTagList.stream().map(PostTag::getPostId).collect(Collectors.toList())).andArticleLike("%" + content + "%");
         return postMapper.selectByExample(postExample);
+    }
+
+    @Override
+    public List<Post> getFollowingPost(UserInfo currUser) {
+        List<Post> postList = new ArrayList<>();
+        Integer userId = currUser.getId();
+        List<UserProfileDTO> userProfileDTOS = followService.findFollowingByUserId(userId);
+        for (UserProfileDTO profile : userProfileDTOS) {
+            postList.addAll(findByAuthor(profile.getUsername()));
+        }
+        return postList;
+
     }
 }

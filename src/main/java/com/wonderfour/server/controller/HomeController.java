@@ -79,6 +79,9 @@ public class HomeController {
     @Operation(description = "Get recommended post list.")
     @GetMapping("/api/recommendation")
     public ResultVO recommendation() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserInfo currUser = userService.findByUsername(authentication.getName());
+
         ResultVO<List<PostDTO>> resultVO = ResultVOUtils.success();
         List<PostDTO> postDTOList = new ArrayList<>();
         resultVO.setData(postDTOList);
@@ -87,7 +90,7 @@ public class HomeController {
             if (post == null) {
                 continue;
             }
-            PostDTO postDTO = postService.convert2DTO(userService.findById(post.getUserId()), post);
+            PostDTO postDTO = postService.convert2DTO(currUser, post);
             postDTOList.add(postDTO);
         }
         return resultVO;

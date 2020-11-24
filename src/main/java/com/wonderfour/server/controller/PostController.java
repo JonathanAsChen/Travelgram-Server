@@ -57,6 +57,26 @@ public class PostController {
     @Autowired
     private CommentService commentService;
 
+    @GetMapping("/posts/following")
+    @PreAuthorize("authentication.authenticated")
+    public ResultVO getFollowingPost() {
+        String currUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserInfo currUser = userService.findByUsername(currUsername);
+        ResultVO<List<PostDTO>> resultVO = ResultVOUtils.success();
+        List<PostDTO> postDTOList = new ArrayList<>();
+        resultVO.setData(postDTOList);
+        List<Post> postList = postService.getFollowingPost(currUser);
+        for (Post post : postList) {
+            if (post == null) {
+                continue;
+            }
+            PostDTO postDTO = postService.convert2DTO(currUser, post);
+            postDTOList.add(postDTO);
+        }
+
+        return resultVO;
+    }
+
     @Operation(description = "Get post list posted by the specific user.")
     @GetMapping("/{username}/posts")
     public ResultVO listPost(@PathVariable("username") String username) {
@@ -304,4 +324,7 @@ public class PostController {
         }
         return resultVO;
     }
+
+
+
 }

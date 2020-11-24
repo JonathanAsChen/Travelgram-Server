@@ -48,4 +48,6 @@ public interface PostService {
     List<Post> searchByContent(String author);
 
     List<Post> searchByTagAndArticle(String tag, String content);
+
+    List<Post> getFollowingPost(UserInfo currUser);
 }
