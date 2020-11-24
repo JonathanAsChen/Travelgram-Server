@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * @author Yifan Chen
+ * @author Yifan Chen, Hongyu Su
  * @version 1.0.0
  * @since 10/7/2020 5:21 PM
  */
