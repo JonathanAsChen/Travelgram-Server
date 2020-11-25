@@ -6,6 +6,7 @@ import com.wonderfour.server.DTO.SearchDTO;
 import com.wonderfour.server.DTO.UserProfileDTO;
 import com.wonderfour.server.VO.ResultVO;
 import com.wonderfour.server.entity.Comment;
+import com.wonderfour.server.entity.Favorite;
 import com.wonderfour.server.entity.Post;
 import com.wonderfour.server.entity.UserInfo;
 import com.wonderfour.server.enums.ResultEnum;
@@ -24,6 +25,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @RestController
@@ -205,6 +207,36 @@ public class PostController {
         favoriteService.favoritePost(currUser.getId(), postId);
 
         return ResultVOUtils.success();
+    }
+
+    @Operation(description = "Get saved.")
+    @GetMapping("/posts/favorites")
+    @PreAuthorize("authentication.authenticated")
+    public ResultVO getFavoritePost() {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserInfo currUser = userService.findByUsername(authentication.getName());
+
+        List<Post> favoritePost = new ArrayList<>();
+        List<Favorite> favorites = favoriteService.getFavoritesList(currUser.getId());
+        if (favorites == null) {
+            throw new TravelgramException(ResultEnum.POST_NOT_FOUND);
+        }
+        for (Favorite favorite : favorites) {
+            if (favorite == null) {
+                continue;
+            }
+            favoritePost.add(postService.findById(favorite.getPostId()));
+        }
+
+        ResultVO<List<PostDTO>> resultVO = ResultVOUtils.success();
+        List<PostDTO> postDTOList = new ArrayList<>();
+        resultVO.setData(postDTOList);
+        for (Post post : favoritePost) {
+            PostDTO postDTO = postService.convert2DTO(currUser, post);
+            postDTOList.add(postDTO);
+        }
+        return resultVO;
     }
 
     @PostMapping("/posts/{postId}/delike")

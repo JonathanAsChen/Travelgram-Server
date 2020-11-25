@@ -45,4 +45,11 @@ public class FavoriteServiceImpl implements FavoriteService {
         favoriteExample.createCriteria().andUserIdEqualTo(userId).andPostIdEqualTo(postId);
         favoriteMapper.deleteByExample(favoriteExample);
     }
+
+    @Override
+    public List<Favorite> getFavoritesList(Integer userId) {
+        FavoriteExample favoriteExample = new FavoriteExample();
+        favoriteExample.createCriteria().andUserIdEqualTo(userId);
+        return favoriteMapper.selectByExample(favoriteExample);
+    }
 }

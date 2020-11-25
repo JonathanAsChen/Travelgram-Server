@@ -2,6 +2,8 @@ package com.wonderfour.server.service;
 
 import com.wonderfour.server.entity.Favorite;
 
+import java.util.List;
+
 /**
  * @author Yifan Chen
  * @version 1.0.0
@@ -14,4 +16,6 @@ public interface FavoriteService {
     void favoritePost(Integer userId, String postId);
 
     void defavoritePost(Integer userId, String postId);
+
+    List<Favorite> getFavoritesList(Integer userId);
 }
